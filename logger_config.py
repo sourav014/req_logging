@@ -17,7 +17,6 @@ def configure_logger(request_id, enabled=True, logging_level='INFO'):
     if not logger.handlers:
         log_file = os.path.join(LOG_DIR, f"{request_id}.log")
 
-        # file hanlder for writing the logs
         file_handler = logging.FileHandler(log_file)
         file_handler.setLevel(logging_level)
 
