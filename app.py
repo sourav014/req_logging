@@ -1,12 +1,8 @@
 from flask import Flask, request, g
 import uuid
-
 from logger_config import configure_logger
 
 app = Flask(__name__)
-
-# Directory to store logs
-
 
 def setup_logger(request_id):
     logger = configure_logger(request_id=request_id)
@@ -19,11 +15,9 @@ def before_request():
     Runs before processing each request.
     Sets up a request-specific logger.
     """
-    # Use a request header or generate a UUID as request_id
     request_id = request.headers.get("X-Request-ID", str(uuid.uuid4()))
     g.request_id = request_id
 
-    # Setup logger for the request
     setup_logger(request_id)
 
 @app.after_request
